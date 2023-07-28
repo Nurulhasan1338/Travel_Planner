@@ -25,8 +25,9 @@ const itinerarySchema = new mongoose.Schema({
         type: String,
         required: true,
       },
-      location: {
-        type: String,
+      destination: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Destination',
         required: true,
       },
       date: {
