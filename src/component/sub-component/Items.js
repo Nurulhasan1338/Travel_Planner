@@ -12,7 +12,7 @@ import Button from "@mui/joy/Button";
 export default function InteractiveCard() {
     const [fav,setFav] = useState(false);
 
-    const handleToggle = ()=>{
+    const handleToggle = () =>{
         setFav(true);
     }
     
@@ -51,7 +51,7 @@ export default function InteractiveCard() {
             </Typography>
           </div>
           <div className="col-1">
-            <Button variant={`${fav?"solid":"soft"}`} onClick={()=>handleToggle}> <i className="fa-regular fa-heart fa-lg"></i> </Button>
+            <Button variant="soft" onClick={()=>handleToggle}> <i className="fa-regular fa-heart fa-lg"></i> </Button>
           </div>
         </div>
         <Typography level="h3" id="card-description" mb={0.5} mt={-1.6}>

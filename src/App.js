@@ -2,7 +2,6 @@ import Mysignin from "./component/signin";
 import SignUp from "./component/signup";
 import "./App.css"
 import Dashboard from "./component/dashboard"
-import { CssVarsProvider } from '@mui/joy/styles';
 import {
   HashRouter as Router,
   Route,
@@ -15,19 +14,16 @@ function App() {
 
 
   return (
-    <CssVarsProvider defaultMode="system"> 
-  
     <div className="App">
     <Router>
     <Routes>
-    <Route path='/' element={<Mysignin key="login"/>} />
+    <Route path='/' element={<Mysignin key="login"/>} />/
     <Route path='/signup' element={<SignUp key="login"/>} />
-    <Route path='/dashboard' element={<Dashboard key="dashboard"/>} />
+    <Route path='/dash' element={<Dashboard key="dashboar/d"/>} />
+   
     </Routes>
-  </Router>
+    </Router>
     </div>
-  
-    </CssVarsProvider>
   );
 }
 

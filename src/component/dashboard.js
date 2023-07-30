@@ -9,12 +9,14 @@ import Items from "./sub-component/Items.js";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
+import { CssVarsProvider } from '@mui/joy/styles';
 
 
 
 
 const Dashboard = () => {
   return (
+    <CssVarsProvider defaultMode="system"> 
     <div className="container">
 
                                 {/* row 1 */}
@@ -97,6 +99,7 @@ const Dashboard = () => {
 </div>  
 </div>  
 </div>
+</CssVarsProvider>
   );
 };
 
