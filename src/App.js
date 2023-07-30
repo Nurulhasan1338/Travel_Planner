@@ -9,18 +9,24 @@ import {
   Routes,
 } from "react-router-dom";
 
+
+
 function App() {
+
+
   return (
     <CssVarsProvider defaultMode="system"> 
+  
     <div className="App">
     <Router>
     <Routes>
-    {/* <Route path='/' element={<Mysignin key="login"/>} />
-    <Route path='/signup' element={<SignUp key="login"/>} /> */}
-    <Route path='/' element={<Dashboard key="login"/>} />
+    <Route path='/' element={<Mysignin key="login"/>} />
+    <Route path='/signup' element={<SignUp key="login"/>} />
+    <Route path='/dashboard' element={<Dashboard key="dashboard"/>} />
     </Routes>
   </Router>
     </div>
+  
     </CssVarsProvider>
   );
 }

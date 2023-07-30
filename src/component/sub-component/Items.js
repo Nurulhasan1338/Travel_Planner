@@ -1,9 +1,11 @@
 import react ,{useState} from "react";
+
 import AspectRatio from "@mui/joy/AspectRatio";
 import Link from "@mui/joy/Link";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Chip from "@mui/joy/Chip";
+
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 
@@ -18,6 +20,7 @@ export default function InteractiveCard() {
     <Card
       variant="outlined"
       orientation="horizontal"
+      className="my-2"
       sx={{
         width: 700,
         "&:hover": {
@@ -48,15 +51,17 @@ export default function InteractiveCard() {
             </Typography>
           </div>
           <div className="col-1">
-            <Button variant={`${fav?"solid":"soft"}`} onClick={()=>handleToggle}><i className="fa-regular fa-heart fa-lg"></i></Button>
+            <Button variant={`${fav?"solid":"soft"}`} onClick={()=>handleToggle}> <i className="fa-regular fa-heart fa-lg"></i> </Button>
           </div>
         </div>
         <Typography level="h3" id="card-description" mb={0.5} mt={-1.6}>
           Yosemite Park
         </Typography>
 
+
         <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
-          <Link
+
+        <Link
             overlay
             underline="none"
             href="#"
@@ -65,14 +70,29 @@ export default function InteractiveCard() {
             California, USA
           </Link>
         </Typography>
-        <Chip
-          variant="outlined"
-          color="primary"
-          size="sm"
-          sx={{ pointerEvents: "none" }}
-        >
-          Cool weather all day long
-        </Chip>
+        <div className="row">
+        <div className="col">
+          <Chip
+            variant="outlined"
+            color="primary"
+            size="sm"
+            sx={{ pointerEvents: "none" }}
+            >
+            Cool weather all day long
+          </Chip>
+       </div>
+        <div className="col">
+         <Typography level="subtitile2">
+         <i className="fa-solid fa-location-dot mx-1"></i>Thailand
+         </Typography>
+       </div>
+        <div className="col">
+         <Typography level="h3">
+         <i className="fa-solid fa-tag"></i> $599
+         </Typography>
+       </div>
+       
+        </div>
       </CardContent>
     </Card>
   );

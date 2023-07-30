@@ -5,13 +5,13 @@ import Search from "./sub-component/search.js";
 import Items from "./sub-component/Items.js";
 
 
+
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
 
 
-import Icon from "@mdi/react";
-import { mdiStarOutline } from "@mdi/js";
+
 
 const Dashboard = () => {
   return (
@@ -36,8 +36,7 @@ const Dashboard = () => {
           </div>
           <div>
             <Button color="primary" disabled={false} onClick={function () {}} size="lg" variant="soft">
-              <Icon path={mdiStarOutline} size={1} className="m-2 p-0" /> Save
-              Search
+             <i className="fa-regular fa-star mx-2"></i>Save Search
             </Button>
           </div>
         </div>
@@ -88,8 +87,11 @@ const Dashboard = () => {
             </div>
         </div>  
         <div className="row rounded-2 List">
-            <div className="col-12">
+            <div className="col-12 scroll-y">
                 <Items/>
+                <Items/>
+                <Items/>
+                
             </div>
             </div>      
 </div>  
