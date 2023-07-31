@@ -12,6 +12,13 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
+import { useContext, useEffect, useState } from "react"
+import { useNavigate} from "react-router-dom"
+import UserContext from "../../context/UserContext"
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 function Copyright(props) {
   return (
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -30,17 +37,120 @@ function Copyright(props) {
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+
+  const context = useContext(UserContext)
+  const {user, getUser, host} = context
+  const navigate = useNavigate()
+  useEffect(() => {
+    if(localStorage.getItem('token')){  
+      getUser()
+      navigate('/dashboard')
+    }
+    else{
+      navigate('/')
+    }
+    // console.log(user, host)
+  }, [])
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+
+    const res = await fetch(`${host}/api/auth/login`, {
+      method : 'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email: data.get('email'), password: data.get('password')})
+    },
+    )
+
+    const myres = await res.json();
+
+    console.log(myres)
+
+    if(!myres.success){
+      toast(myres.error, {
+        position: "top-right",
+        type:"error",
+        autoClose: 5000,
+
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    } else{
+    
+      
+        if(myres.authToken){
+          toast('Logged in Successfully!\nRedirecting to dashboard.', {
+            position: "top-right",
+            type:"success",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
+          localStorage.setItem('token', myres.authToken)
+          
+          // setTimeout(()=>{
+            //   getUser()
+            //   // navigate('/starter')
+            // },1000)
+            
+            setTimeout(()=>{
+              navigate('/dashboard')
+            },5000)
+
+        }else{
+          console.log(myres)
+          console.log(myres.authToken)
+          toast("Something went wrong", {
+            position: "top-right",
+            type:"error",
+            autoClose: 5000,
+  
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+
+            localStorage.clear()
+        }
+   }
+  
   };
 
   return (
     <ThemeProvider theme={defaultTheme}>
+        <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        />
+        {/* Same as */}
+        <ToastContainer />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
