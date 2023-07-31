@@ -51,7 +51,7 @@ export default function InteractiveCard() {
             </Typography>
           </div>
           <div className="col-1">
-            <Button variant="soft" onClick={()=>handleToggle}> <i className="fa-regular fa-heart fa-lg"></i> </Button>
+            <Button variant="solid" onClick={()=>handleToggle}> <i className={`fa-${fav?"solid":"regular"} fa-heart fa-lg`}></i> </Button>
           </div>
         </div>
         <Typography level="h3" id="card-description" mb={0.5} mt={-1.6}>
@@ -70,6 +70,7 @@ export default function InteractiveCard() {
             California, USA
           </Link>
         </Typography>
+        
         <div className="row">
         <div className="col">
           <Chip
