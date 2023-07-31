@@ -44,9 +44,7 @@ const userSchema = new mongoose.Schema({
     zipCode: String,
     country: String,
   },
-
 });
-
 
 const User = mongoose.model('User', userSchema);
 
